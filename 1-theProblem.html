@@ -1,0 +1,22 @@
+<html>
+<head>
+	<script>
+	function execAsync() {
+    	console.log("I am executed asynchronously");
+	}
+
+	function showTheProblem() {
+		setTimeout(execAsync, 0);
+		console.log("I'm invoked after execAsync()");
+		console.log("But I'll show up before!");
+		return;
+	}
+
+	showTheProblem();
+	</script>
+</head>
+<body>
+
+
+</body>
+</html>

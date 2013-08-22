@@ -1,0 +1,21 @@
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script>
+		function submitOrder(data) {
+			$.ajax( "verifyItems.cfm" )
+				.done(function() {
+					$.ajax( "processItems.cfm" )
+						.done(function() {
+							 $.ajax( "sendEmail.cfm" )
+							 	.done(function() { showOrderCompleteDiv(); })
+							 	.fail(function() { alert("sendEmail error"); });
+						}).fail(function() { alert("processItems failed"); });
+				}).fail(function() { alert("verifyItems failed"); });
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

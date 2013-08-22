@@ -1,0 +1,27 @@
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+	<p>Intentional Failure Example</p>
+
+	<script>
+		function saveOrder() {
+			var d = $.Deferred();
+			setTimeout(function () {
+				d.reject("There was a problem processing your credit card.");
+			}, 3000);
+			return d.promise();
+		}
+
+		saveOrder().then(
+			function (result) {
+				// never invoked in this example
+			},
+			function (err) {
+				console.log(err);
+			}
+		);
+	</script>
+</body>
+</html>

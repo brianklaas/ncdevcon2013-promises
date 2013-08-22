@@ -1,0 +1,49 @@
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+	<p>Pub/Sub Example</p>
+	<p>Adapted from http://addyosmani.com/blog/jquery-1-7s-callbacks-feature-demystified/ </p>
+
+	<script>
+		var logToConsole = function(value){
+			console.log(value);
+			return false;
+		}
+
+		var topics = {};
+		jQuery.Topic = function( id ) {
+			var callbacks,
+				topic = id && topics[ id ];
+			if (!topic) {
+				callbacks = jQuery.Callbacks();
+				topic = {
+					publish: callbacks.fire,
+					subscribe: callbacks.add,
+					unsubscribe: callbacks.remove
+				};
+				if (id) {
+					topics[id] = topic;
+				}
+			}
+			return topic;
+		};
+
+		// Set up a topic that will listen for notifications
+		var topic = $.Topic('emailAfterOrder');
+		$.Topic('emailAfterOrder').subscribe(logToConsole);
+
+		// Create the deferred and tell it what to do once the work is done
+		var dfd = $.Deferred();
+		dfd.done(topic.publish);
+
+		//
+		// Do some crazy long work here
+		//
+
+		// Resolve the deferred, which will notify the topic that is listening
+		dfd.resolve('Order complete, send the email!');
+	</script>
+</body>
+</html>

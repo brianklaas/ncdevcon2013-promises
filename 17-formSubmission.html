@@ -1,0 +1,39 @@
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+	<p>Form Submission via AJAX</p>
+
+	<form id="orderForm">
+		<p>
+			<input id="submitOrderBtn" type="submit" value="Place Your Order" />
+		</p>
+	</form>
+
+	<script>
+		var target   = $("#orderForm");
+
+		var onDone        = function() { target.append("<p>Thank you for your order!</p>"); };
+		var onError       = function() { target.append("<p>There was an error contacting the server.</p>"); };
+		var ajaxLogger 	  = function() { console.log("AJAX call complete."); }
+
+		var onSubmitOrderFormDeferredVersion = function() {
+			$.post( "/processOrder.cfm", $("#orderForm").serialize())
+				.then( onDone, onError )
+				.always( ajaxLogger );
+ 			return false;  // prevent default form behavior
+ 		}
+
+		var onSubmitOrderForm = function() {
+			$.post( "/processOrder.cfm", $("#orderForm").serialize())
+				.done( onDone )
+				.fail( onError )
+				.always( ajaxLogger );
+ 			return false;  // prevent default form behavior
+ 		}
+
+		$("#orderForm").submit( onSubmitOrderFormDeferredVersion );
+	</script>
+</body>
+</html>
