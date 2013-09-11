@@ -26,23 +26,23 @@
 			return promise.promise();
 		};
 
-		var kickoff, outOne, inOne, outTwo;
+		var kickoff, firstFadeOut, firstFadeIn, secondFadeOut;
 
 		kickoff = $.Deferred();
 
-		outOne = kickoff.then(function () {
-			console.log("Fading Out");
+		firstFadeOut = kickoff.then(function () {
+			console.log("Fading out the first time");
 			// remember that wait returns a promise
 			return fadeOut('#divToFadeOut');
 		});
 
-		inOne = outOne.then(function () {
+		firstFadeIn = firstFadeOut.then(function () {
 			console.log("Fading in");
 			return fadeIn('#divToFadeOut');
 		});
 
-		outTwo = inOne.then(function () {
-			console.log("Fading out again");
+		secondFadeOut = firstFadeIn.then(function () {
+			console.log("Fading out the second time");
 			return fadeOut('#divToFadeOut');
 		});
 

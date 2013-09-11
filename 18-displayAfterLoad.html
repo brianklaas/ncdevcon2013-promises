@@ -28,7 +28,7 @@
 		  } );
 		}
 
-		function loadContentAsync() {
+		function showAsyncLoadedContent() {
 			return $.Deferred(function( dfd ) {
 				var latest = $( "#news, #tweets" );
 					// the second parameter for slideDown() is the function to run when the animation is complete
@@ -39,7 +39,7 @@
 		$.when(
 			getLatestNews(),
 			getLatestTweets(),
-			loadContentAsync()
+			showAsyncLoadedContent()
 		).then(function(){
 			console.log( "UI fully loaded." );
 		}).fail(function(){
