@@ -12,11 +12,11 @@
 	</form>
 
 	<script>
-		var target   = $("#orderForm");
+		var target = $("#orderForm");
 
-		var onDone        = function() { target.append("<p>Thank you for your order!</p>"); };
-		var onError       = function() { target.append("<p>There was an error contacting the server.</p>"); };
-		var ajaxLogger 	  = function() { console.log("AJAX call complete."); }
+		var onDone = function() { target.append("<p>Thank you for your order!</p>"); };
+		var onError = function() { target.append("<p>There was an error contacting the server.</p>"); };
+		var ajaxLogger = function() { console.log("AJAX call complete."); }
 
 		var onSubmitOrderFormDeferredVersion = function() {
 			$.post( "/processOrder.cfm", $("#orderForm").serialize())
