@@ -3,20 +3,22 @@
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script>
 		var stepsNeededToBeDone = 0;
-		function submitOrder(data) {
-			$.ajax( "verifyItems.cfm" ).done(function() { stepsNeededToBeDone++; }).fail(function() { alert("error"); });
-			$.ajax( "processItems.cfm" ).done(function() { stepsNeededToBeDone++; }).fail(function() { alert("error"); });
-			$.ajax( "sendEmail.cfm" ).done(function() { stepsNeededToBeDone++; }).fail(function() { alert("error"); });
+		function makeDinner(data) {
+			$.ajax( "makePizza.cfm" ).done(function() { stepsNeededToBeDone++; }).fail(function() { alert("error"); });
+			$.ajax( "makeSalad.cfm" ).done(function() { stepsNeededToBeDone++; }).fail(function() { alert("error"); });
+			$.ajax( "openBeer.cfm" ).done(function() { stepsNeededToBeDone++; }).fail(function() { alert("error"); });
 			setTimeout(checkForCompletion, 2000);
 		}
 
 		function checkForCompletion() {
 			if (stepsNeededToBeDone == 3) {
-				showOrderCompleteDiv();
+				dinnerIsReady();
 			} else {
 				setTimeout(checkForCompletion, 2000);
 			}
 		}
+		
+		makeDinner();
 	</script>
 </head>
 <body>

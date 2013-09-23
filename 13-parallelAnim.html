@@ -11,17 +11,17 @@
 	</div>
 
 	<script>
-		var fadeIn = function (el) {
+		var fadeOut = function(el) {
 			var promise = $(el).animate({
-				opacity: 1
+				opacity: 0
 			}, 1500);
 			// The promise will be resolved when the animation completes.
 			return promise.promise();
 		};
-
-		var fadeOut = function(el) {
+		
+		var fadeIn = function (el) {
 			var promise = $(el).animate({
-				opacity: 0
+				opacity: 1
 			}, 1500);
 			// The promise will be resolved when the animation completes.
 			return promise.promise();

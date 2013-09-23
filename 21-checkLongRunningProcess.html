@@ -15,7 +15,7 @@
 				if (response === "done") {
 					deferred.resolve();
 				} else {
-					setTimeout(check, 1000);
+					setTimeout(check, 3000);
 				}
 			};
 
@@ -31,7 +31,7 @@
 				request.then(success, failure);
 			}
 
-			setTimeout(check, 1000);
+			setTimeout(check, 3000);
 
 			return deferred.promise();
 		}

@@ -8,19 +8,19 @@
 	</div>
 
 	<script>
-		var fadeIn = function (el) {
-			console.log("Inside fadeIn");
-			var promise = $(el).animate({
-				opacity: 1
-			}, 1500);
-			// The promise will be resolved when the animation completes.
-			return promise.promise();
-		};
-
 		var fadeOut = function(el) {
 			console.log("Inside fadeOut");
 			var promise = $(el).animate({
 				opacity: 0
+			}, 1500);
+			// The promise will be resolved when the animation completes.
+			return promise.promise();
+		};
+		
+		var fadeIn = function (el) {
+			console.log("Inside fadeIn");
+			var promise = $(el).animate({
+				opacity: 1
 			}, 1500);
 			// The promise will be resolved when the animation completes.
 			return promise.promise();
